@@ -23,7 +23,7 @@ public class MainMenu
 
 public class ListMenu
 {
-    public string WaitingInputListName { get; } = "WaitingInputListName";
+    public string InputListName { get; } = "InputListName";
     public string WaitingClickOnInlineButtonUserLists { get; } = "WaitingClickOnInlineButtonUserLists";
     public string WaitingClickActionButtonWithList { get; } = "WaitingClickActionButtonWithList";
     public string WaitingNewListName { get; } = "WaitingNewListName";
