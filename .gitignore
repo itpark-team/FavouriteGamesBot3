@@ -3,3 +3,5 @@
 ################################################################################
 
 /FavouriteGamesBot/obj
+/.vs
+/FavouriteGamesBot/bin/Debug/net6.0
