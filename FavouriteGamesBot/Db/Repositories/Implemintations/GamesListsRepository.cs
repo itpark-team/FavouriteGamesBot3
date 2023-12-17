@@ -10,9 +10,19 @@ public class GamesListsRepository : IGamesListsRepository
 {
     private FgbDbContext _dbContext;
 
+    public GamesListsRepository(FgbDbContext db)
+    {
+        _dbContext = db;
+    }
+
     public List<GamesList> GetGamesListsByChatId(long chatId)
     {
         return _dbContext.GamesLists.Where(x => x.ChatId == chatId).ToList();
+    }
+
+    public GamesList GetGamesListById(int id)
+    {
+        return _dbContext.GamesLists.Where(x => x.Id == id).FirstOrDefault();
     }
 
     public void AddGamesList(long chatId, string title)
@@ -23,6 +33,7 @@ public class GamesListsRepository : IGamesListsRepository
             Title = title,
             IsPrivate = true
         });
+        _dbContext.SaveChanges();
     }
 
     public void UpdateGamesListTitle(int gamesListId, string title)
@@ -43,8 +54,14 @@ public class GamesListsRepository : IGamesListsRepository
 
     public void DeleteGamesList(int gamesListId)
     {
-        //todo check games for delete
         GamesList gamesList = _dbContext.GamesLists.Where(x => x.Id == gamesListId).FirstOrDefault();
+
+        foreach (var game in gamesList.Games)
+        {
+            gamesList.Games.Remove(game);
+            _dbContext.Games.Remove(game);
+        }
+        
         _dbContext.GamesLists.Remove(gamesList);
         _dbContext.SaveChanges();
     }

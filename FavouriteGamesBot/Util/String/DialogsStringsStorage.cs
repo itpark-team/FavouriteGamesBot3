@@ -9,10 +9,18 @@ public class DialogsStringsStorage
     public const string MainMenu = "Выберите действие";
 
     public const string ListNameInput = "Введите название списка";
-
+    
+    public const string ListNameInputError = "Название списка не должно превышать 20 символов\n\n";
+    
     public const string ListCreateSuccess = "Список создан успешно!";
 
-    public const string MineLists = "Ваши списки";
+    public const string MyLists = "Ваши списки";
+
+    public const string MyListsMaxCount = "Вы можете создать не более 5 списков\n\n";
+
+    public const string NoLists = "У вас пока нет списков\n\n";
+
+    public const string PressButton = "Нажмите на кнопку";
 
     public static string ChoosedList(GamesList gameList)
     {
@@ -25,14 +33,16 @@ public class DialogsStringsStorage
 
     public static string ListPrivacyInfo(GamesList gameList)
     {
-        return $"Приватность данного списка {gameList.IsPrivate}";
+        string visible = gameList.IsPrivate ? "непубличный" : "публичный";
+
+        return $"Приватность данного списка: {visible}\n\n";
     }
 
     public static string ListPrivacySelected(GamesList gameList)
     {
-        string visible = gameList.IsPrivate ? "публичный" : "непубличный";
+        string visible = gameList.IsPrivate ? "непубличный" : "публичный";
 
-        return $"Ваш список стал {visible}";
+        return $"Ваш список стал {visible}\n\n";
     }
 
     public const string NewListNameInput = "Введите новое название списка";
@@ -50,10 +60,6 @@ public class DialogsStringsStorage
     public const string GameRatingErrorInput = "Некорректная оценка игры";
 
     public const string GameDescriptionInput = "Введите ваш комментарий к данной игре";
-
-    public const string ChooseListToAddGame = "Выберите список";
-
-    public const string YourLists = "Ваши списки";
 
     public static string CreatedGameParameters(Game game)
     {
