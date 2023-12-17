@@ -39,18 +39,34 @@ public class InlineKeyboardMarkupStorage
         new[]
         {
             InlineKeyboardButton.WithCallbackData(BotButtonsStorage.ListMenu.AddGame.Name,
-                BotButtonsStorage.ListMenu.AddGame.CallBackData),
+                BotButtonsStorage.ListMenu.AddGame.CallBackData)
+        },
+        new[]
+        {
             InlineKeyboardButton.WithCallbackData(BotButtonsStorage.ListMenu.CheckGames.Name,
-                BotButtonsStorage.ListMenu.CheckGames.CallBackData),
+                BotButtonsStorage.ListMenu.CheckGames.CallBackData)
+        },
+        new[]
+        {
             InlineKeyboardButton.WithCallbackData(BotButtonsStorage.ListMenu.RenameList.Name,
-                BotButtonsStorage.ListMenu.RenameList.CallBackData),
+                BotButtonsStorage.ListMenu.RenameList.CallBackData)
+        },
+        new[]
+        {
             InlineKeyboardButton.WithCallbackData(BotButtonsStorage.ListMenu.ChangeListPrivacy.Name,
-                BotButtonsStorage.ListMenu.ChangeListPrivacy.CallBackData),
+                BotButtonsStorage.ListMenu.ChangeListPrivacy.CallBackData)
+        },
+        new[]
+        {
             InlineKeyboardButton.WithCallbackData(BotButtonsStorage.ListMenu.DeleteList.Name,
-                BotButtonsStorage.ListMenu.DeleteList.CallBackData),
+                BotButtonsStorage.ListMenu.DeleteList.CallBackData)
+        },
+        new[]
+        {
             InlineKeyboardButton.WithCallbackData(BotButtonsStorage.ListMenu.BackToLists.Name,
                 BotButtonsStorage.ListMenu.BackToLists.CallBackData)
         }
+
     });
 
     public static InlineKeyboardMarkup ListOfGamesChoose = new(new[]

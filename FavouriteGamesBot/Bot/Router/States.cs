@@ -24,28 +24,28 @@ public class MainMenu
 public class ListMenu
 {
     public string InputListName { get; } = "InputListName";
-    public string WaitingClickOnInlineButtonUserLists { get; } = "WaitingClickOnInlineButtonUserLists";
-    public string WaitingClickActionButtonWithList { get; } = "WaitingClickActionButtonWithList";
-    public string WaitingNewListName { get; } = "WaitingNewListName";
-    public string WaitingClickButtonGameInListGamesMenu { get; } = "WaitingClickButtonGameInListGamesMenu";
+    public string ClickOnInlineButtonUserLists { get; } = "ClickOnInlineButtonUserLists";
+    public string ClickActionButtonWithList { get; } = "ClickActionButtonWithList";
+    public string NewListName { get; } = "NewListName";
+    public string ClickButtonGameInListGamesMenu { get; } = "ClickButtonGameInListGamesMenu";
 
-    public string WaitingClickOnInlineButtonInPrivateListSettingMenu { get; } =
-        "WaitingClickOnInlineButtonInPrivateListSettingMenu";
+    public string ClickButtonChangePrivacy { get; } =
+        "ClickButtonChangePrivacy";
 
     public string ClickOnDeleteListButton { get; } = "ClickOnDeleteListButton";
 }
 
 public class GameMenu
 {
-    public string WaitingClickInlineButtonInActionWithGameMenu { get; } =
-        "WaitingClickInlineButtonInActionWithGameMenu";
+    public string ClickInlineButtonInActionWithGameMenu { get; } =
+        "ClickInlineButtonInActionWithGameMenu";
 
     public string ClickInlineDeleteGameButton { get; } = "ClickInlineDeleteGameButton";
-    public string WaitingInputGameName { get; } = "WaitingInputGameName";
+    public string InputGameName { get; } = "InputGameName";
 }
 
 public class Recomendation
 {
-    public string WaitingClickOnInlineButtonInMenuReccomendationGames { get; } =
-        "WaitingClickOnInlineButtonInMenuReccomendationGames";
+    public string ClickOnInlineButtonInMenuReccomendationGames { get; } =
+        "ClickOnInlineButtonInMenuReccomendationGames";
 }
