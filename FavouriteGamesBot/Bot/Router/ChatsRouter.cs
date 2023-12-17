@@ -1,10 +1,13 @@
 ﻿using System;
 using FavouriteGamesBot.Service;
+using NLog;
 
 namespace FavouriteGamesBot.Bot.Router;
 
 public class ChatsRouter
 {
+    private static ILogger Logger = LogManager.GetCurrentClassLogger();
+    
     private ChatTransmittedDataPairs _chatTransmittedDataPairs;
     private ServiceManager _servicesManager;
 
@@ -23,7 +26,7 @@ public class ChatsRouter
 
         TransmittedData transmittedData = _chatTransmittedDataPairs.GetByChatId(chatId);
 
-        Console.WriteLine($"РОУТЕР chatId = {chatId}; State = {transmittedData.State}");
+        Logger.Info($"ROUTER chatId = {chatId}; State = {transmittedData.State}");
 
         return _servicesManager.ProcessBotUpdate(textData, transmittedData);
     }

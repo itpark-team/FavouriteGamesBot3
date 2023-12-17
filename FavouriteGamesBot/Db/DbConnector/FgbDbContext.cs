@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using FavouriteGamesBot.Db.Models;
 using Microsoft.EntityFrameworkCore;
+using NLog;
 
 namespace FavouriteGamesBot.Db.DbConnector;
 
 public partial class FgbDbContext : DbContext
 {
+    private static ILogger Logger = LogManager.GetCurrentClassLogger();
+    
     public FgbDbContext()
     {
     }
@@ -21,7 +24,8 @@ public partial class FgbDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https: //go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=83.147.246.87:5432;Database=fgb_db;Username=fgb_user;Password=12345");
+        => optionsBuilder.UseNpgsql("Host=83.147.246.87:5432;Database=fgb_db;Username=fgb_user;Password=12345")
+            .LogTo(data=>Logger.Info(data));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
