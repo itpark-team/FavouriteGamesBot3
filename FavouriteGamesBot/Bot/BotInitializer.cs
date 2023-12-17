@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading;
 using FavouriteGamesBot.Util.String;
+using NLog;
+using NLog.Fluent;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types.Enums;
@@ -9,6 +11,8 @@ namespace FavouriteGamesBot.Bot;
 
 public class BotInitializer
 {
+    private static ILogger Logger = LogManager.GetCurrentClassLogger();
+    
     private TelegramBotClient _botClient;
     private CancellationTokenSource _cancellationTokenSource;
 
@@ -16,6 +20,9 @@ public class BotInitializer
     {
         _botClient = new TelegramBotClient(SystemStringsStorage.TelegramToken);
         _cancellationTokenSource = new CancellationTokenSource();
+        
+        Logger.Info(
+            $"Выполнена инициализация Бота с токеном {SystemStringsStorage.TelegramToken}");
     }
 
     public void Start()
@@ -33,10 +40,14 @@ public class BotInitializer
             receiverOptions,
             _cancellationTokenSource.Token
         );
+        
+        Logger.Info("Бот запущен");
     }
 
     public void Stop()
     {
         _cancellationTokenSource.Cancel();
+        
+        Logger.Info("Бот остановлен");
     }
 }

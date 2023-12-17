@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using FavouriteGamesBot.Bot.Router;
+using NLog;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Types;
@@ -14,6 +15,8 @@ namespace FavouriteGamesBot.Bot;
 
 public class BotRequestHandlers
 {
+    private static ILogger Logger = LogManager.GetCurrentClassLogger();
+    
     private ChatsRouter _chatsRouter;
 
     public BotRequestHandlers()
@@ -56,7 +59,7 @@ public class BotRequestHandlers
                     break;
             }
 
-            Console.WriteLine(
+            Logger.Info(
                 $"ВХОДЯЩЕЕ СОООБЩЕНИЕ UpdateType = {update.Type}; chatId = {chatId}; messageId = {messageFromUserId}; text = {textData} canRoute = {canRoute}");
 
             if (canRoute)
@@ -69,7 +72,7 @@ public class BotRequestHandlers
                     replyMarkup: botMessage.KeyboardMarkup,
                     cancellationToken: cancellationToken);
 
-                Console.WriteLine(
+                Logger.Info(
                     $"ИСХОДЯЩЕЕ СОООБЩЕНИЕ chatId = {chatId}; text = {botMessage.Text.Replace("\n", " ")}; Keyboard = {getKeyboardAsString(botMessage.KeyboardMarkup)}");
             }
         }
@@ -81,7 +84,7 @@ public class BotRequestHandlers
                 cancellationToken: cancellationToken
             );
 
-            Console.WriteLine($"ОШИБКА chatId = {chatId}; text = {e.Message}");
+            Logger.Error($"ОШИБКА chatId = {chatId}; text = {e.Message}");
         }
     }
 
@@ -95,7 +98,7 @@ public class BotRequestHandlers
             _ => exception.ToString()
         };
 
-        Console.WriteLine($"Ошибка поймана в методе HandlePollingErrorAsync, {errorMessage}");
+        Logger.Error($"Ошибка поймана в методе HandlePollingErrorAsync, {errorMessage}");
         return Task.CompletedTask;
     }
 
