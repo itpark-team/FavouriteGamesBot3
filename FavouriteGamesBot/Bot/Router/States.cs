@@ -42,6 +42,10 @@ public class GameMenu
 
     public string ClickInlineDeleteGameButton { get; } = "ClickInlineDeleteGameButton";
     public string InputGameName { get; } = "InputGameName";
+    public string InputPrice { get; } = "InputPrice";
+    public string InputRating { get; } = "InputRating";
+    public string InputComment { get; } = "InputComment";
+    public string InputCheck { get; } = "InputCheck";
 }
 
 public class Recomendation

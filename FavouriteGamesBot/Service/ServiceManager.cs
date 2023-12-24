@@ -43,6 +43,12 @@ public class ServiceManager
         _methods[States.ListMenu.ClickActionButtonWithList] = listMenuService.ProcessClickActionButtonWithList;
         _methods[States.ListMenu.NewListName] = listMenuService.ProcessNewListName;
         _methods[States.ListMenu.ClickButtonChangePrivacy] = listMenuService.ProcessClickButtonChangePrivacy;
+        _methods[States.GameMenu.InputGameName] = listMenuService.ProcessGameAdding;
+        _methods[States.GameMenu.InputPrice] = listMenuService.ProcessGameAdding;
+        _methods[States.GameMenu.InputRating] = listMenuService.ProcessGameAdding;
+        _methods[States.GameMenu.InputComment] = listMenuService.ProcessGameAdding;
+        _methods[States.GameMenu.InputCheck] = listMenuService.ProcessGameAdding;
+        _methods[States.ListMenu.ClickOnDeleteListButton] = listMenuService.ProcessClickOnDeleteListButton;
         #endregion
     }
 

@@ -3,6 +3,7 @@ using System.Linq;
 using FavouriteGamesBot.Db.DbConnector;
 using FavouriteGamesBot.Db.Models;
 using FavouriteGamesBot.Db.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace FavouriteGamesBot.Db.Repositories.Implemintations;
 
@@ -14,12 +15,19 @@ public class GamesListsRepository : IGamesListsRepository
     {
         _dbContext = db;
     }
+    
+    
 
     public List<GamesList> GetGamesListsByChatId(long chatId)
     {
         return _dbContext.GamesLists.Where(x => x.ChatId == chatId).ToList();
     }
 
+    public GamesList GetGamesListByTitle(string title, long chatId)
+    {
+        return _dbContext.GamesLists.Where(x => x.Title == title && x.ChatId == chatId).FirstOrDefault();
+    }
+    
     public GamesList GetGamesListById(int id)
     {
         return _dbContext.GamesLists.Where(x => x.Id == id).FirstOrDefault();
@@ -54,12 +62,12 @@ public class GamesListsRepository : IGamesListsRepository
 
     public void DeleteGamesList(int gamesListId)
     {
-        GamesList gamesList = _dbContext.GamesLists.Where(x => x.Id == gamesListId).FirstOrDefault();
+        GamesList gamesList = _dbContext.GamesLists.Where(x => x.Id == gamesListId).Include(x=>x.Games).FirstOrDefault();
 
         foreach (var game in gamesList.Games)
         {
-            gamesList.Games.Remove(game);
             _dbContext.Games.Remove(game);
+            _dbContext.SaveChanges();
         }
         
         _dbContext.GamesLists.Remove(gamesList);

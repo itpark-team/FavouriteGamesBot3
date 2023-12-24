@@ -22,6 +22,10 @@ public class DialogsStringsStorage
 
     public const string PressButton = "Нажмите на кнопку";
 
+    public const string ListDeleted = "Список с играми удален";
+
+    public const string ListDeletedConfirmation = "Подтвердите ужаления списка, написав да или нет";
+    
     public static string ChoosedList(GamesList gameList)
     {
         return "Выбран список\n\n" +
@@ -50,6 +54,8 @@ public class DialogsStringsStorage
     public const string ListNameChangeSuccess = "Название списка успешно изменено!";
 
     public const string GameNameInput = "Введите название игры";
+    
+    public const string GameNameInputError = "Название игры не должно превышать 25 символов";
 
     public const string GamePriceInput = "Введите стоимость игры";
 
@@ -60,6 +66,7 @@ public class DialogsStringsStorage
     public const string GameRatingErrorInput = "Некорректная оценка игры";
 
     public const string GameDescriptionInput = "Введите ваш комментарий к данной игре";
+    public const string Confirmation = "Подтвердите создание игры, написав да или нет";
 
     public static string CreatedGameParameters(Game game)
     {
