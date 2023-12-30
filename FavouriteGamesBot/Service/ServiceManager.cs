@@ -21,11 +21,12 @@ public class ServiceManager
 
         IGamesListsRepository gamesListsRepository = new GamesListsRepository(db);
         IGamesRepository gamesRepository = new GamesRepository(db);
-        
+
         StartMenuService startMenuService = new StartMenuService();
         MainMenuService mainMenuService = new MainMenuService(gamesListsRepository);
-        ListMenuService listMenuService = new ListMenuService(gamesListsRepository);
-        
+        ListMenuService listMenuService = new ListMenuService(gamesRepository, gamesListsRepository);
+        GameMenuService gameMenuService = new GameMenuService(gamesRepository, gamesListsRepository);
+
         _methods =
             new Dictionary<string, Func<string, TransmittedData, BotMessage>>();
 
@@ -43,12 +44,20 @@ public class ServiceManager
         _methods[States.ListMenu.ClickActionButtonWithList] = listMenuService.ProcessClickActionButtonWithList;
         _methods[States.ListMenu.NewListName] = listMenuService.ProcessNewListName;
         _methods[States.ListMenu.ClickButtonChangePrivacy] = listMenuService.ProcessClickButtonChangePrivacy;
-        _methods[States.GameMenu.InputGameName] = listMenuService.ProcessGameAdding;
-        _methods[States.GameMenu.InputPrice] = listMenuService.ProcessGameAdding;
-        _methods[States.GameMenu.InputRating] = listMenuService.ProcessGameAdding;
-        _methods[States.GameMenu.InputComment] = listMenuService.ProcessGameAdding;
-        _methods[States.GameMenu.InputCheck] = listMenuService.ProcessGameAdding;
-        _methods[States.ListMenu.ClickOnDeleteListButton] = listMenuService.ProcessClickOnDeleteListButton;
+        _methods[States.ListMenu.ListInputDeletingConfirmation] = listMenuService.ProcessClickOnDeleteListButton;
+        #endregion
+
+        #region GameMenu 
+        _methods[States.GameMenu.ClickOnInlineButtonListGames] = gameMenuService.ProcessClickOnInlineButtonListGames;
+        _methods[States.GameMenu.InputTitle] = gameMenuService.ProcessGameCreating;
+        _methods[States.GameMenu.InputPrice] = gameMenuService.ProcessGameCreating;
+        _methods[States.GameMenu.InputRating] = gameMenuService.ProcessGameCreating;
+        _methods[States.GameMenu.InputComment] = gameMenuService.ProcessGameCreating;
+        _methods[States.GameMenu.InputCreatingConfirmation] = gameMenuService.ProcessGameCreating;
+        _methods[States.GameMenu.ClickInlineButtonInActionWithGameMenu] = gameMenuService.ProcessClickInlineButtonInActionWithGameMenu;
+        _methods[States.GameMenu.InputDeletingConfirmation] = gameMenuService.ProcessInputDeletingConfirmation;
+        _methods[States.GameMenu.ChooseEditParameter] = gameMenuService.ProcessChooseEditParameter;
+        _methods[States.GameMenu.InputEditingGameParameter] = gameMenuService.ProcessInputEditingGameParameter;
         #endregion
     }
 

@@ -27,29 +27,26 @@ public class ListMenu
     public string ClickOnInlineButtonUserLists { get; } = "ClickOnInlineButtonUserLists";
     public string ClickActionButtonWithList { get; } = "ClickActionButtonWithList";
     public string NewListName { get; } = "NewListName";
-    public string ClickButtonGameInListGamesMenu { get; } = "ClickButtonGameInListGamesMenu";
-
-    public string ClickButtonChangePrivacy { get; } =
-        "ClickButtonChangePrivacy";
-
-    public string ClickOnDeleteListButton { get; } = "ClickOnDeleteListButton";
+    public string ClickButtonChangePrivacy { get; } = "ClickButtonChangePrivacy";
+    public string ListInputDeletingConfirmation { get; } = "ListInputDeletingConfirmation";
 }
 
 public class GameMenu
 {
-    public string ClickInlineButtonInActionWithGameMenu { get; } =
-        "ClickInlineButtonInActionWithGameMenu";
-
+    public string ClickOnInlineButtonListGames { get; } = "ProcessClickOnInlineButtonListGames";
+    public string ClickInlineButtonInActionWithGameMenu { get; } = "ClickInlineButtonInActionWithGameMenu";
     public string ClickInlineDeleteGameButton { get; } = "ClickInlineDeleteGameButton";
-    public string InputGameName { get; } = "InputGameName";
+    public string ChooseEditParameter { get; } = "ChooseEditParameter";
+    public string InputTitle { get; } = "InputGameName";
     public string InputPrice { get; } = "InputPrice";
     public string InputRating { get; } = "InputRating";
     public string InputComment { get; } = "InputComment";
-    public string InputCheck { get; } = "InputCheck";
+    public string InputCreatingConfirmation { get; } = "InputCreatingConfirmation";
+    public string InputEditingGameParameter { get; } = "InputEditingGameParameter";
+    public string InputDeletingConfirmation { get; } = "InputDeletingConfirmation";
 }
 
 public class Recomendation
 {
-    public string ClickOnInlineButtonInMenuReccomendationGames { get; } =
-        "ClickOnInlineButtonInMenuReccomendationGames";
+    public string ClickOnInlineButtonInMenuReccomendationGames { get; } = "ClickOnInlineButtonInMenuReccomendationGames";
 }

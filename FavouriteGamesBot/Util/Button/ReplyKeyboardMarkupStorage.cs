@@ -23,5 +23,23 @@ public class ReplyKeyboardMarkupStorage
         }
 
         return new ReplyKeyboardMarkup(rows.ToArray()) { ResizeKeyboard = true };
+    } 
+    public static ReplyKeyboardMarkup CreateKeyboardGames(List<Game> games)
+    {
+        var rows = new List<KeyboardButton[]>();
+
+        for (var i = 0; i <= games.Count; i++)
+        {
+            if (i == games.Count)
+            {
+                rows.Add(new[] { new KeyboardButton("Назад") });
+            }
+            else
+            {
+                rows.Add(new[] { new KeyboardButton(games[i].Title) });
+            }
+        }
+
+        return new ReplyKeyboardMarkup(rows.ToArray()) { ResizeKeyboard = true };
     }
 }

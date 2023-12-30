@@ -84,12 +84,46 @@ public class InlineKeyboardMarkupStorage
     {
         new[]
         {
-            InlineKeyboardButton.WithCallbackData(BotButtonsStorage.GameMenu.ChangeGame.Name,
-                BotButtonsStorage.ListMenu.Game.CallBackData),
+            InlineKeyboardButton.WithCallbackData(BotButtonsStorage.GameMenu.EditGame.Name,
+                BotButtonsStorage.GameMenu.EditGame.CallBackData),
             InlineKeyboardButton.WithCallbackData(BotButtonsStorage.GameMenu.DeleteGame.Name,
-                BotButtonsStorage.ListMenu.CheckGames.CallBackData),
+                BotButtonsStorage.GameMenu.DeleteGame.CallBackData),
             InlineKeyboardButton.WithCallbackData(BotButtonsStorage.GameMenu.BackToListOfGames.Name,
-                BotButtonsStorage.ListMenu.RenameList.CallBackData)
+                BotButtonsStorage.GameMenu.BackToListOfGames.CallBackData)
+        }
+    });
+
+    public static InlineKeyboardMarkup GameConfirmation = new(new[]
+    {
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(BotButtonsStorage.GameMenu.Confirm.Name,
+                BotButtonsStorage.GameMenu.Confirm.CallBackData),
+            InlineKeyboardButton.WithCallbackData(BotButtonsStorage.GameMenu.Cancel.Name,
+                BotButtonsStorage.GameMenu.Cancel.CallBackData),
+        }
+    });
+
+    public static InlineKeyboardMarkup GameEditing = new(new[]
+    {
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(BotButtonsStorage.GameMenu.InputTitle.Name,
+                BotButtonsStorage.GameMenu.InputTitle.CallBackData),
+            InlineKeyboardButton.WithCallbackData(BotButtonsStorage.GameMenu.InputPrice.Name,
+                BotButtonsStorage.GameMenu.InputPrice.CallBackData)
+        },
+        new[]
+        {
+            InlineKeyboardButton.WithCallbackData(BotButtonsStorage.GameMenu.InputRating.Name,
+                BotButtonsStorage.GameMenu.InputRating.CallBackData),
+            InlineKeyboardButton.WithCallbackData(BotButtonsStorage.GameMenu.InputComment.Name,
+                BotButtonsStorage.GameMenu.InputComment.CallBackData)
+        },
+        new[]
+        {
+              InlineKeyboardButton.WithCallbackData(BotButtonsStorage.GameMenu.Back.Name,
+                BotButtonsStorage.GameMenu.Back.CallBackData)
         }
     });
 

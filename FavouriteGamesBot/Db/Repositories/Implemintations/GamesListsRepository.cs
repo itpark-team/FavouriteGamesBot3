@@ -15,8 +15,8 @@ public class GamesListsRepository : IGamesListsRepository
     {
         _dbContext = db;
     }
-    
-    
+
+
 
     public List<GamesList> GetGamesListsByChatId(long chatId)
     {
@@ -27,10 +27,17 @@ public class GamesListsRepository : IGamesListsRepository
     {
         return _dbContext.GamesLists.Where(x => x.Title == title && x.ChatId == chatId).FirstOrDefault();
     }
-    
+
     public GamesList GetGamesListById(int id)
     {
-        return _dbContext.GamesLists.Where(x => x.Id == id).FirstOrDefault();
+        return _dbContext.GamesLists.Where(x => x.Id == id).Include(x => x.Games).FirstOrDefault();
+    }
+
+    public void AddGameInGamesList(GamesList gamesList, Game game)
+    {
+        gamesList.Games.Add(game);
+        _dbContext.GamesLists.Update(gamesList);
+        _dbContext.SaveChanges();
     }
 
     public void AddGamesList(long chatId, string title)
@@ -62,15 +69,15 @@ public class GamesListsRepository : IGamesListsRepository
 
     public void DeleteGamesList(int gamesListId)
     {
-        GamesList gamesList = _dbContext.GamesLists.Where(x => x.Id == gamesListId).Include(x=>x.Games).FirstOrDefault();
+        GamesList gamesList = _dbContext.GamesLists.Where(x => x.Id == gamesListId).Include(x => x.Games).FirstOrDefault();
+        List<Game> games = (List<Game>)gamesList.Games;
+        _dbContext.GamesLists.Remove(gamesList);
+        _dbContext.SaveChanges();
 
-        foreach (var game in gamesList.Games)
+        foreach (var game in games)
         {
             _dbContext.Games.Remove(game);
             _dbContext.SaveChanges();
         }
-        
-        _dbContext.GamesLists.Remove(gamesList);
-        _dbContext.SaveChanges();
     }
 }

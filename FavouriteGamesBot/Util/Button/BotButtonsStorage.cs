@@ -38,9 +38,16 @@ public class ListMenu
 
 public class GameMenu
 {
-    public BotButton ChangeGame { get; } = new("Изменить игру", "ChangeGame");
-    public BotButton DeleteGame { get; } = new("Удалить игру", "DeleteGame");
+    public BotButton EditGame { get; } = new("Изменить", "EditGame");
+    public BotButton DeleteGame { get; } = new("Удалить", "DeleteGame");
     public BotButton BackToListOfGames { get; } = new("Назад", "BackToListOfGames");
+    public BotButton Confirm { get; } = new("Подтверждаю", "Confirm");
+    public BotButton Cancel { get; } = new("Отменить", "Cancel");
+    public BotButton InputTitle { get; } = new("Название", "InputTitle");
+    public BotButton InputPrice { get; } = new("Стоимость", "InputPrice");
+    public BotButton InputRating { get; } = new("Оценка", "InputRating");
+    public BotButton InputComment { get; } = new("Комментарий", "InputComment");
+    public BotButton Back { get; } = new("Назад", "Back");
 }
 
 public class Recomendation

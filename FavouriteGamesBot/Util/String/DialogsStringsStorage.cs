@@ -9,9 +9,9 @@ public class DialogsStringsStorage
     public const string MainMenu = "Выберите действие";
 
     public const string ListNameInput = "Введите название списка";
-    
+
     public const string ListNameInputError = "Название списка не должно превышать 20 символов\n\n";
-    
+
     public const string ListCreateSuccess = "Список создан успешно!";
 
     public const string MyLists = "Ваши списки";
@@ -24,8 +24,8 @@ public class DialogsStringsStorage
 
     public const string ListDeleted = "Список с играми удален";
 
-    public const string ListDeletedConfirmation = "Подтвердите ужаления списка, написав да или нет";
-    
+    public const string ListDeletedConfirmation = "Подтвердите удаление списка";
+
     public static string ChoosedList(GamesList gameList)
     {
         return "Выбран список\n\n" +
@@ -37,14 +37,14 @@ public class DialogsStringsStorage
 
     public static string ListPrivacyInfo(GamesList gameList)
     {
-        string visible = gameList.IsPrivate ? "непубличный" : "публичный";
+        string visible = gameList.IsPrivate ? "приватный" : "публичный";
 
         return $"Приватность данного списка: {visible}\n\n";
     }
 
     public static string ListPrivacySelected(GamesList gameList)
     {
-        string visible = gameList.IsPrivate ? "непубличный" : "публичный";
+        string visible = gameList.IsPrivate ? "приватным" : "публичным";
 
         return $"Ваш список стал {visible}\n\n";
     }
@@ -54,7 +54,7 @@ public class DialogsStringsStorage
     public const string ListNameChangeSuccess = "Название списка успешно изменено!";
 
     public const string GameNameInput = "Введите название игры";
-    
+
     public const string GameNameInputError = "Название игры не должно превышать 25 символов";
 
     public const string GamePriceInput = "Введите стоимость игры";
@@ -87,23 +87,21 @@ public class DialogsStringsStorage
                "Выберите действие с игрой:";
     }
 
-
     public static string GameAdded(Game game)
     {
         return $"Игра {game.Title} была создана успешно!";
     }
 
-    public const string GamesInList = "Ваши игры";
+    public const string GamesInList = "Игры в этом списке:";
+    public const string ChooseGameEditParameter = "Выберите параметр который хотите изменить";
 
-    public static string GameInList(Game game)
-    {
-        return $"{game.Title}\n\n";
-    }
+    public const string GamesAreNull = "В этом списке нет игр";
 
-    public static string ChoosedGame(Game game)
-    {
-        return "Выбрана игра\n\n" +
-               $"{game.Title}\n\n" +
-               "Выберите действие";
-    }
+    public const string GameDeletingConfirmation = "Подтвердите удаление игры";
+
+    public const string Write = "Введите";
+    public const string Title = "title";
+    public const string Price = "price";
+    public const string Rating = "rating";
+    public const string Comment = "comment";
 }
