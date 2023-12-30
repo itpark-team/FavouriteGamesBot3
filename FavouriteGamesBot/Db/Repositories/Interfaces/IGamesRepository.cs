@@ -5,7 +5,9 @@ namespace FavouriteGamesBot.Db.Repositories.Interfaces;
 public interface IGamesRepository
 {
     List<Game> GetGamesByGamesListId(int gamesListId);
+    public Game GetGameByTitle(GamesList gamesList, string title);
     void AddGame(int listId, string title, int price, int rating, string comment);
     void UpdateGame(int gameId, string title, int price, int rating, string comment);
-    void DeleteGame(int gameId, int gamesListId);
+    void DeleteGame(int gameId);
+    Game GetGameById(int id);
 }

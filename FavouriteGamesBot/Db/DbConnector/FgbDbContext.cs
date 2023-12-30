@@ -31,6 +31,8 @@ public partial class FgbDbContext : DbContext
     {
         modelBuilder.Entity<Game>(entity =>
         {
+
+
             entity.HasKey(e => e.Id).HasName("games_pk");
 
             entity.ToTable("games");
@@ -52,11 +54,11 @@ public partial class FgbDbContext : DbContext
                     "GamesInGamesList",
                     r => r.HasOne<GamesList>().WithMany()
                         .HasForeignKey("GameListId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("games_in_games_list_games_list_id_fk"),
                     l => l.HasOne<Game>().WithMany()
                         .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("games_in_games_list_games_id_fk"),
                     j =>
                     {

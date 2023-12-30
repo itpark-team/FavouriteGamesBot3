@@ -22,58 +22,29 @@ public class MainMenuService
     {
         List<GamesList> gamesLists = _gamesListsRepository.GetGamesListsByChatId(transmittedData.ChatId);
 
-        switch (textData)
+        if (textData == "CreateGameList")
         {
-            case "CreateGameList":
-
-                if (gamesLists.Count < 5)
-                {
-                    transmittedData.State = States.ListMenu.InputListName;
-                    return new BotMessage(DialogsStringsStorage.ListNameInput, null);
-                }
-                else
-                    return new BotMessage(DialogsStringsStorage.MyListsMaxCount + DialogsStringsStorage.MainMenu,
-                 InlineKeyboardMarkupStorage.MainMenuChoose);
-
-                break;
-            case "Lists":
-
-                if (gamesLists.Count != 0)
-                {
-
-                    transmittedData.State = States.ListMenu.ClickOnInlineButtonUserLists;
-
-                    var rows = new List<InlineKeyboardButton[]>();
-
-
-                    for (var i = 0; i <= gamesLists.Count; i++)
-                    {
-                        if (i == gamesLists.Count)
-                        {
-                            rows.Add(new[] { InlineKeyboardButton.WithCallbackData("Назад", "BackToMainMenu") });
-                        }
-                        else
-                        {
-                            rows.Add(new[] { InlineKeyboardButton.WithCallbackData(gamesLists[i].Title, gamesLists[i].Id.ToString()) });
-                        }
-                    }
-
-                    return new BotMessage(DialogsStringsStorage.MyLists, new InlineKeyboardMarkup(rows.ToArray()));
-                }
-                else
-                {
-                    return new BotMessage(DialogsStringsStorage.NoLists + DialogsStringsStorage.MainMenu,
-                        InlineKeyboardMarkupStorage.MainMenuChoose);
-                }
-
-                break;
-            case "Recomendation":
-                //todo
-                break;
-            default:
-                return new BotMessage(DialogsStringsStorage.MainMenu, InlineKeyboardMarkupStorage.MainMenuChoose);
-                break;
+            transmittedData.State = States.ListMenu.InputListName;
+            return new BotMessage(DialogsStringsStorage.ListNameInput, null);
         }
+        if (textData == "Lists")
+        {
+            if (gamesLists.Count == 0)
+            {
+                return new BotMessage(DialogsStringsStorage.NoLists + DialogsStringsStorage.MainMenu,
+                    InlineKeyboardMarkupStorage.MainMenuChoose);
+            }
+            
+            transmittedData.State = States.ListMenu.ClickOnInlineButtonUserLists;
+
+            return new BotMessage(DialogsStringsStorage.MyLists, ReplyKeyboardMarkupStorage.CreateKeyboardGamesLists(gamesLists));
+        }
+        else if (textData == "Recomendation")
+        {
+            //todo
+        }
+
+        return new BotMessage(DialogsStringsStorage.MainMenu, InlineKeyboardMarkupStorage.MainMenuChoose);
 
         throw new Exception("Неизвестная ошибка в ProcessClickOnInlineButton");
     }

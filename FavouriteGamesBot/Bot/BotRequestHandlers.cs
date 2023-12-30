@@ -16,7 +16,7 @@ namespace FavouriteGamesBot.Bot;
 public class BotRequestHandlers
 {
     private static ILogger Logger = LogManager.GetCurrentClassLogger();
-    
+
     private ChatsRouter _chatsRouter;
 
     public BotRequestHandlers()
@@ -65,6 +65,21 @@ public class BotRequestHandlers
             if (canRoute)
             {
                 BotMessage botMessage = await Task.Run(() => _chatsRouter.Route(chatId, textData), cancellationToken);
+
+                if (botMessage.HideReplyKeyboard == true)
+                {
+                    Message message = await botClient.SendTextMessageAsync(
+                        chatId: chatId,
+                        text: ".",
+                        replyMarkup: new ReplyKeyboardRemove(),
+                        cancellationToken: cancellationToken);
+                    
+                    await botClient.DeleteMessageAsync(
+                        chatId: chatId,
+                        messageId: message.MessageId,
+                        cancellationToken: cancellationToken
+                    );
+                }
 
                 await botClient.SendTextMessageAsync(
                     chatId: chatId,
@@ -129,7 +144,7 @@ public class BotRequestHandlers
                 stringBuilder.Append(row.ToList()[0].Text + ";");
             }
         }
-        
+
         return stringBuilder.ToString();
     }
 }
