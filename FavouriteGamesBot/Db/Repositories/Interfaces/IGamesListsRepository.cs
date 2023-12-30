@@ -7,8 +7,8 @@ public interface IGamesListsRepository
 {
     List<GamesList> GetGamesListsByChatId(long chatId);
     GamesList GetGamesListByTitle(string title, long chatId);
-    public GamesList GetGamesListById(int id);
-    public void AddGameInGamesList(GamesList gamesList, Game game);
+    GamesList GetGamesListById(int id);
+    void AddGameInGamesList(GamesList gamesList, Game game);
     void AddGamesList(long chatId, string title);
     void UpdateGamesListTitle(int gamesListId, string title);
     void UpdateGamesListPrivacy(int gamesListId, bool isPrivate);

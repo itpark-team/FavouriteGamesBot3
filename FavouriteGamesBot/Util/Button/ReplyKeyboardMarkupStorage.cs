@@ -10,17 +10,12 @@ public class ReplyKeyboardMarkupStorage
     {
         var rows = new List<KeyboardButton[]>();
 
-        for (var i = 0; i <= gamesLists.Count; i++)
+        for (var i = 0; i < gamesLists.Count; i++)
         {
-            if (i == gamesLists.Count)
-            {
-                rows.Add(new[] { new KeyboardButton("Назад") });
-            }
-            else
-            {
-                rows.Add(new[] { new KeyboardButton(gamesLists[i].Title) });
-            }
+            rows.Add(new[] { new KeyboardButton(gamesLists[i].Title) });
         }
+        
+        rows.Add(new[] { new KeyboardButton("Назад") });
 
         return new ReplyKeyboardMarkup(rows.ToArray()) { ResizeKeyboard = true };
     } 
