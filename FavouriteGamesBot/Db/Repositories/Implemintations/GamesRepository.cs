@@ -53,19 +53,8 @@ public class GamesRepository : IGamesRepository
         _dbContext.SaveChanges();
     }
 
-    public void UpdateGame(int gameId, string title, int price, int rating, string comment)
+    public void UpdateGame(Game game)
     {
-        Game game = _dbContext.Games.Where(x => x.Id == gameId).FirstOrDefault();
-
-        if (title != "")
-            game.Title = title;
-        if (price != 0)
-            game.Price = price;
-        if (rating != 0)
-            game.Rating = rating;
-        if (comment != "")
-            game.Comment = comment;
-
         _dbContext.Games.Update(game);
         _dbContext.SaveChanges();
     }

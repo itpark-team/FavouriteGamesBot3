@@ -35,14 +35,16 @@ public class GameMenu
 {
     public string ClickOnInlineButtonListGames { get; } = "ProcessClickOnInlineButtonListGames";
     public string ClickInlineButtonInActionWithGameMenu { get; } = "ClickInlineButtonInActionWithGameMenu";
-    public string ClickInlineDeleteGameButton { get; } = "ClickInlineDeleteGameButton";
     public string ChooseEditParameter { get; } = "ChooseEditParameter";
-    public string InputTitle { get; } = "InputGameName";
+    public string InputTitle { get; } = "InputTitle";
     public string InputPrice { get; } = "InputPrice";
     public string InputRating { get; } = "InputRating";
     public string InputComment { get; } = "InputComment";
+    public string EditingInputTitle { get; } = "EditingInputTitle";
+    public string EditingInputPrice { get; } = "EditingInputPrice";
+    public string EditingInputRating { get; } = "EditingInputRating";
+    public string EditingInputComment { get; } = "EditingInputComment";
     public string InputCreatingConfirmation { get; } = "InputCreatingConfirmation";
-    public string InputEditingGameParameter { get; } = "InputEditingGameParameter";
     public string InputDeletingConfirmation { get; } = "InputDeletingConfirmation";
 }
 

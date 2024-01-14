@@ -53,9 +53,9 @@ public class DialogsStringsStorage
 
     public const string ListNameChangeSuccess = "Название списка успешно изменено!";
 
-    public const string GameNameInput = "Введите название игры";
+    public const string GameTitleInput = "Введите название игры";
 
-    public const string GameNameInputError = "Название игры не должно превышать 25 символов";
+    public const string GameTitleInputError = "Название игры не должно превышать 25 символов";
 
     public const string GamePriceInput = "Введите стоимость игры";
 
@@ -65,12 +65,15 @@ public class DialogsStringsStorage
 
     public const string GameRatingErrorInput = "Некорректная оценка игры";
 
-    public const string GameDescriptionInput = "Введите ваш комментарий к данной игре";
+    public const string GameCommentInput = "Введите ваш комментарий к данной игре";
+
+    public const string GameCommentInputError = "Комментарий не должен превышать 150 символов!";
+
     public const string Confirmation = "Подтвердите создание игры, написав да или нет";
 
     public static string CreatedGameParameters(Game game)
     {
-        return "Проверьте правильность введённых данных:\n\n" +
+        return "\nПроверьте правильность введённых данных:\n\n" +
                $"Игра: {game.Title}\n" +
                $"Стоимость: {game.Price}\n" +
                $"Ваша оценка: {game.Rating}\n" +
@@ -100,8 +103,12 @@ public class DialogsStringsStorage
     public const string GameDeletingConfirmation = "Подтвердите удаление игры";
 
     public const string Write = "Введите";
+
     public const string Title = "title";
+
     public const string Price = "price";
+
     public const string Rating = "rating";
+
     public const string Comment = "comment";
 }

@@ -47,17 +47,21 @@ public class ServiceManager
         _methods[States.ListMenu.ListInputDeletingConfirmation] = listMenuService.ProcessClickOnDeleteListButton;
         #endregion
 
-        #region GameMenu 
+        #region GameMenu  
+        _methods[States.GameMenu.InputTitle] = gameMenuService.ProcessInputTitle;
+        _methods[States.GameMenu.InputPrice] = gameMenuService.ProcessInputPrice;
+        _methods[States.GameMenu.InputRating] = gameMenuService.ProcessInputRating;
+        _methods[States.GameMenu.InputComment] = gameMenuService.ProcessInputComment;
+        _methods[States.GameMenu.InputCreatingConfirmation] = gameMenuService.ProcessInputCreatingConfirmation;
+        
         _methods[States.GameMenu.ClickOnInlineButtonListGames] = gameMenuService.ProcessClickOnInlineButtonListGames;
-        _methods[States.GameMenu.InputTitle] = gameMenuService.ProcessGameCreating;
-        _methods[States.GameMenu.InputPrice] = gameMenuService.ProcessGameCreating;
-        _methods[States.GameMenu.InputRating] = gameMenuService.ProcessGameCreating;
-        _methods[States.GameMenu.InputComment] = gameMenuService.ProcessGameCreating;
-        _methods[States.GameMenu.InputCreatingConfirmation] = gameMenuService.ProcessGameCreating;
         _methods[States.GameMenu.ClickInlineButtonInActionWithGameMenu] = gameMenuService.ProcessClickInlineButtonInActionWithGameMenu;
         _methods[States.GameMenu.InputDeletingConfirmation] = gameMenuService.ProcessInputDeletingConfirmation;
         _methods[States.GameMenu.ChooseEditParameter] = gameMenuService.ProcessChooseEditParameter;
-        _methods[States.GameMenu.InputEditingGameParameter] = gameMenuService.ProcessInputEditingGameParameter;
+        _methods[States.GameMenu.EditingInputTitle] = gameMenuService.ProcessEditingInputTitle;
+        _methods[States.GameMenu.EditingInputPrice] = gameMenuService.ProcessEditingInputPrice;
+        _methods[States.GameMenu.EditingInputRating] = gameMenuService.ProcessEditingInputRating;
+        _methods[States.GameMenu.EditingInputComment] = gameMenuService.ProcessEditingInputComment;
         #endregion
     }
 
