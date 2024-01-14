@@ -59,7 +59,7 @@ public class ListMenuService
 
     public BotMessage ProcessClickButtonChangePrivacy(string textData, TransmittedData transmittedData)
     {
-        GamesList gamesList = _gamesListsRepository.GetGamesListById((int)transmittedData.DataStorage.Get("listId"));
+          GamesList gamesList = _gamesListsRepository.GetGamesListById((int)transmittedData.DataStorage.Get("listId"));
 
         if (textData == ConstraintStringsStorage.PublicList)
         {
@@ -79,7 +79,7 @@ public class ListMenuService
 
     public BotMessage ProcessNewListName(string textData, TransmittedData transmittedData)
     {
-        if (textData.Length > ConstraintStringsStorage.ListNameMaxLength)
+         if (textData.Length > ConstraintStringsStorage.ListNameMaxLength)
         {
             return new BotMessage(DialogsStringsStorage.ListNameInputError, null);
         }
@@ -109,7 +109,8 @@ public class ListMenuService
         {
             transmittedData.State = States.ListMenu.ClickActionButtonWithList;
 
-            return new BotMessage(DialogsStringsStorage.ChoosedList(gamesList), InlineKeyboardMarkupStorage.ListMenuChoose);
+            return new BotMessage(DialogsStringsStorage.ChoosedList(gamesList),
+                InlineKeyboardMarkupStorage.ListMenuChoose);
         }
 
         return new BotMessage(DialogsStringsStorage.ListDeletedConfirmation, null);
@@ -117,7 +118,7 @@ public class ListMenuService
 
     public BotMessage ProcessClickActionButtonWithList(string textData, TransmittedData transmittedData)
     {
-        GamesList gamesList = _gamesListsRepository.GetGamesListById((int)transmittedData.DataStorage.Get("listId"));
+       GamesList gamesList = _gamesListsRepository.GetGamesListById((int)transmittedData.DataStorage.Get("listId"));
 
         if (textData == BotButtonsStorage.ListMenu.AddGame.CallBackData)
         {
@@ -160,5 +161,5 @@ public class ListMenuService
         }
 
         return new BotMessage(DialogsStringsStorage.ChoosedList(gamesList), InlineKeyboardMarkupStorage.ListMenuChoose);
-    }
+     }
 }

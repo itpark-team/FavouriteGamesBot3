@@ -14,6 +14,7 @@ public class ReplyKeyboardMarkupStorage
         {
             rows.Add(new[] { new KeyboardButton(gamesLists[i].Title) });
         }
+
         rows.Add(new[] { new KeyboardButton("Назад") });
 
         return new ReplyKeyboardMarkup(rows.ToArray()) { ResizeKeyboard = true };
