@@ -173,7 +173,7 @@ public class GameMenuService
             _gamesRepository.DeleteGame((int)transmittedData.DataStorage.Get("gameId"));
 
             List<Db.Models.Game> games = (List<Db.Models.Game>)_gamesListsRepository.GetGamesListById((int)transmittedData.DataStorage.Get("listId")).Games;
-            if (games == null)
+            if (games.Count == 0)
             {
                 GamesList gamesList = _gamesListsRepository.GetGamesListById((int)transmittedData.DataStorage.Get("listId"));
 
