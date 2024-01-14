@@ -22,24 +22,24 @@ public class MainMenuService
     {
         List<GamesList> gamesLists = _gamesListsRepository.GetGamesListsByChatId(transmittedData.ChatId);
 
-        if (textData == "CreateGameList")
+        if (textData == ConstraintStringsStorage.CreateGameList)
         {
             transmittedData.State = States.ListMenu.InputListName;
-            return new BotMessage(DialogsStringsStorage.ListNameInput, null);
+            return new BotMessage(DialogsStringsStorage.ListNameInput);
         }
-        if (textData == "Lists")
+        if (textData == ConstraintStringsStorage.Lists)
         {
             if (gamesLists.Count == 0)
             {
                 return new BotMessage(DialogsStringsStorage.NoLists + DialogsStringsStorage.MainMenu,
                     InlineKeyboardMarkupStorage.MainMenuChoose);
             }
-            
+
             transmittedData.State = States.ListMenu.ClickOnInlineButtonUserLists;
 
             return new BotMessage(DialogsStringsStorage.MyLists, ReplyKeyboardMarkupStorage.CreateKeyboardGamesLists(gamesLists));
         }
-        else if (textData == "Recomendation")
+        if (textData == ConstraintStringsStorage.Recomendations)
         {
             //todo
         }

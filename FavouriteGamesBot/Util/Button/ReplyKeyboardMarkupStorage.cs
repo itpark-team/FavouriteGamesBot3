@@ -10,35 +10,23 @@ public class ReplyKeyboardMarkupStorage
     {
         var rows = new List<KeyboardButton[]>();
 
-        for (var i = 0; i <= gamesLists.Count; i++)
+        for (var i = 0; i < gamesLists.Count; i++)
         {
-            if (i == gamesLists.Count)
-            {
-                rows.Add(new[] { new KeyboardButton("Назад") });
-            }
-            else
-            {
-                rows.Add(new[] { new KeyboardButton(gamesLists[i].Title) });
-            }
+            rows.Add(new[] { new KeyboardButton(gamesLists[i].Title) });
         }
+        rows.Add(new[] { new KeyboardButton("Назад") });
 
         return new ReplyKeyboardMarkup(rows.ToArray()) { ResizeKeyboard = true };
-    } 
+    }
     public static ReplyKeyboardMarkup CreateKeyboardGames(List<Game> games)
     {
         var rows = new List<KeyboardButton[]>();
 
-        for (var i = 0; i <= games.Count; i++)
+        for (var i = 0; i < games.Count; i++)
         {
-            if (i == games.Count)
-            {
-                rows.Add(new[] { new KeyboardButton("Назад") });
-            }
-            else
-            {
-                rows.Add(new[] { new KeyboardButton(games[i].Title) });
-            }
+            rows.Add(new[] { new KeyboardButton(games[i].Title) });
         }
+        rows.Add(new[] { new KeyboardButton("Назад") });
 
         return new ReplyKeyboardMarkup(rows.ToArray()) { ResizeKeyboard = true };
     }

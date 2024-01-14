@@ -7,7 +7,7 @@ public interface IGamesRepository
     List<Game> GetGamesByGamesListId(int gamesListId);
     public Game GetGameByTitle(GamesList gamesList, string title);
     void AddGame(int listId, string title, int price, int rating, string comment);
-    void UpdateGame(int gameId, string title, int price, int rating, string comment);
+    void UpdateGame(Game game);
     void DeleteGame(int gameId);
     Game GetGameById(int id);
 }
