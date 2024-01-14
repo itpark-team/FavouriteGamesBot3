@@ -43,9 +43,7 @@ public class MainMenuService
         {
             //todo
         }
-
-        return new BotMessage(DialogsStringsStorage.MainMenu, InlineKeyboardMarkupStorage.MainMenuChoose);
-
+        
         throw new Exception("Неизвестная ошибка в ProcessClickOnInlineButton");
     }
 }

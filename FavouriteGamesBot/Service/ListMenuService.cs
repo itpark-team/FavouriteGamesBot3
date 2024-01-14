@@ -25,7 +25,7 @@ public class ListMenuService
     {
         if (textData.Length > ConstraintStringsStorage.ListNameMaxLength)
         {
-            return new BotMessage(DialogsStringsStorage.ListNameInputError, null);
+            return new BotMessage(DialogsStringsStorage.ListNameInputError);
         }
 
         transmittedData.State = States.MainMenu.ClickOnInlineButton;
@@ -48,38 +48,45 @@ public class ListMenuService
         if (gamesList == null)
         {
             List<GamesList> gamesLists = _gamesListsRepository.GetGamesListsByChatId(transmittedData.ChatId);
-            return new BotMessage(DialogsStringsStorage.PressButton, ReplyKeyboardMarkupStorage.CreateKeyboardGamesLists(gamesLists));
+            return new BotMessage(DialogsStringsStorage.PressButton,
+                ReplyKeyboardMarkupStorage.CreateKeyboardGamesLists(gamesLists));
         }
 
         transmittedData.State = States.ListMenu.ClickActionButtonWithList;
         transmittedData.DataStorage.AddOrUpdate("listId", gamesList.Id);
 
-        return new BotMessage(DialogsStringsStorage.ChoosedList(gamesList), InlineKeyboardMarkupStorage.ListMenuChoose, true);
+        return new BotMessage(DialogsStringsStorage.ChoosedList(gamesList), InlineKeyboardMarkupStorage.ListMenuChoose,
+            true);
     }
 
     public BotMessage ProcessClickButtonChangePrivacy(string textData, TransmittedData transmittedData)
     {
-          GamesList gamesList = _gamesListsRepository.GetGamesListById((int)transmittedData.DataStorage.Get("listId"));
+        GamesList gamesList = _gamesListsRepository.GetGamesListById((int)transmittedData.DataStorage.Get("listId"));
 
         if (textData == ConstraintStringsStorage.PublicList)
         {
             transmittedData.State = States.ListMenu.ClickActionButtonWithList;
             _gamesListsRepository.UpdateGamesListPrivacy(gamesList.Id, false);
-            return new BotMessage(DialogsStringsStorage.ListPrivacySelected(gamesList) + DialogsStringsStorage.ChoosedList(gamesList), InlineKeyboardMarkupStorage.ListMenuChoose);
+            return new BotMessage(
+                DialogsStringsStorage.ListPrivacySelected(gamesList) + DialogsStringsStorage.ChoosedList(gamesList),
+                InlineKeyboardMarkupStorage.ListMenuChoose);
         }
+
         if (textData == ConstraintStringsStorage.PrivateList)
         {
             transmittedData.State = States.ListMenu.ClickActionButtonWithList;
             _gamesListsRepository.UpdateGamesListPrivacy(gamesList.Id, true);
-            return new BotMessage(DialogsStringsStorage.ListPrivacySelected(gamesList) + DialogsStringsStorage.ChoosedList(gamesList), InlineKeyboardMarkupStorage.ListMenuChoose);
+            return new BotMessage(
+                DialogsStringsStorage.ListPrivacySelected(gamesList) + DialogsStringsStorage.ChoosedList(gamesList),
+                InlineKeyboardMarkupStorage.ListMenuChoose);
         }
 
-        return new BotMessage(DialogsStringsStorage.ListPrivacyInfo(gamesList) + DialogsStringsStorage.ListPrivacy, InlineKeyboardMarkupStorage.ChooseListPrivacy);
+        throw new Exception("Неизвестная ошибка в ProcessClickButtonChangePrivacy");
     }
 
     public BotMessage ProcessNewListName(string textData, TransmittedData transmittedData)
     {
-         if (textData.Length > ConstraintStringsStorage.ListNameMaxLength)
+        if (textData.Length > ConstraintStringsStorage.ListNameMaxLength)
         {
             return new BotMessage(DialogsStringsStorage.ListNameInputError, null);
         }
@@ -105,7 +112,8 @@ public class ListMenuService
 
             return new BotMessage(DialogsStringsStorage.MainMenu, InlineKeyboardMarkupStorage.MainMenuChoose);
         }
-        else if (textData == BotButtonsStorage.GameMenu.Cancel.CallBackData)
+
+        if (textData == BotButtonsStorage.GameMenu.Cancel.CallBackData)
         {
             transmittedData.State = States.ListMenu.ClickActionButtonWithList;
 
@@ -113,53 +121,61 @@ public class ListMenuService
                 InlineKeyboardMarkupStorage.ListMenuChoose);
         }
 
-        return new BotMessage(DialogsStringsStorage.ListDeletedConfirmation, null);
+        throw new Exception("Неизвестная ошибка в ProcessClickOnDeleteListButton");
     }
 
     public BotMessage ProcessClickActionButtonWithList(string textData, TransmittedData transmittedData)
     {
-       GamesList gamesList = _gamesListsRepository.GetGamesListById((int)transmittedData.DataStorage.Get("listId"));
+        GamesList gamesList = _gamesListsRepository.GetGamesListById((int)transmittedData.DataStorage.Get("listId"));
 
         if (textData == BotButtonsStorage.ListMenu.AddGame.CallBackData)
         {
             transmittedData.State = States.GameMenu.InputTitle;
             return new BotMessage(DialogsStringsStorage.GameTitleInput, null);
         }
-        else if (textData == BotButtonsStorage.ListMenu.CheckGames.CallBackData)
+        if (textData == BotButtonsStorage.ListMenu.CheckGames.CallBackData)
         {
             if (((List<Game>)gamesList.Games).Count == 0)
-                return new BotMessage(DialogsStringsStorage.GamesAreNull + "\n\n" + DialogsStringsStorage.ChoosedList(gamesList), InlineKeyboardMarkupStorage.ListMenuChoose);
+                return new BotMessage(
+                    DialogsStringsStorage.GamesAreNull + "\n\n" + DialogsStringsStorage.ChoosedList(gamesList),
+                    InlineKeyboardMarkupStorage.ListMenuChoose);
 
             transmittedData.State = States.GameMenu.ClickOnInlineButtonListGames;
-            return new BotMessage(DialogsStringsStorage.GamesInList, ReplyKeyboardMarkupStorage.CreateKeyboardGames((List<Game>)gamesList.Games));
+            return new BotMessage(DialogsStringsStorage.GamesInList,
+                ReplyKeyboardMarkupStorage.CreateKeyboardGames((List<Game>)gamesList.Games));
         }
-        else if (textData == BotButtonsStorage.ListMenu.RenameList.CallBackData)
+        if (textData == BotButtonsStorage.ListMenu.RenameList.CallBackData)
         {
             transmittedData.State = States.ListMenu.NewListName;
 
             return new BotMessage(DialogsStringsStorage.NewListNameInput, null);
         }
-        else if (textData == BotButtonsStorage.ListMenu.ChangeListPrivacy.CallBackData)
+        if (textData == BotButtonsStorage.ListMenu.ChangeListPrivacy.CallBackData)
         {
             transmittedData.State = States.ListMenu.ClickButtonChangePrivacy;
 
-            return new BotMessage(DialogsStringsStorage.ListPrivacyInfo(gamesList) + DialogsStringsStorage.ListPrivacy, InlineKeyboardMarkupStorage.ChooseListPrivacy);
+            return new BotMessage(DialogsStringsStorage.ListPrivacyInfo(gamesList) + DialogsStringsStorage.ListPrivacy,
+                InlineKeyboardMarkupStorage.ChooseListPrivacy);
         }
-        else if (textData == BotButtonsStorage.ListMenu.DeleteList.CallBackData)
+
+        if (textData == BotButtonsStorage.ListMenu.DeleteList.CallBackData)
         {
             transmittedData.State = States.ListMenu.ListInputDeletingConfirmation;
 
-            return new BotMessage(DialogsStringsStorage.ListDeletedConfirmation, InlineKeyboardMarkupStorage.GameConfirmation);
+            return new BotMessage(DialogsStringsStorage.ListDeletedConfirmation,
+                InlineKeyboardMarkupStorage.GameConfirmation);
         }
-        else if (textData == BotButtonsStorage.ListMenu.BackToLists.CallBackData)
+
+        if (textData == BotButtonsStorage.ListMenu.BackToLists.CallBackData)
         {
             transmittedData.State = States.ListMenu.ClickOnInlineButtonUserLists;
             transmittedData.DataStorage.Delete("listId");
             List<GamesList> gamesLists = _gamesListsRepository.GetGamesListsByChatId(transmittedData.ChatId);
 
-            return new BotMessage(DialogsStringsStorage.MyLists, ReplyKeyboardMarkupStorage.CreateKeyboardGamesLists(gamesLists));
+            return new BotMessage(DialogsStringsStorage.MyLists,
+                ReplyKeyboardMarkupStorage.CreateKeyboardGamesLists(gamesLists));
         }
 
-        return new BotMessage(DialogsStringsStorage.ChoosedList(gamesList), InlineKeyboardMarkupStorage.ListMenuChoose);
-     }
+        throw new Exception("Неизвестная ошибка в ProcessClickActionButtonWithList");
+    }
 }

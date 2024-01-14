@@ -111,7 +111,7 @@ public class GameMenuService
             return new BotMessage(DialogsStringsStorage.GameAdded(gamesList.Games.Last()), InlineKeyboardMarkupStorage.ListMenuChoose);
         }
 
-        return new BotMessage(DialogsStringsStorage.Confirmation, InlineKeyboardMarkupStorage.GameConfirmation);
+        throw new Exception("Неизвестная ошибка в ProcessInputCreatingConfirmation");
     }
 
     public BotMessage ProcessClickOnInlineButtonListGames(string textData, TransmittedData transmittedData)
@@ -136,8 +136,6 @@ public class GameMenuService
         transmittedData.DataStorage.AddOrUpdate("gameId", game.Id);
 
         return new BotMessage(DialogsStringsStorage.ChoosedGameParameters(game), InlineKeyboardMarkupStorage.GameMenuChoose, true);
-
-        throw new NotImplementedException();
     }
 
     public BotMessage ProcessClickInlineButtonInActionWithGameMenu(string textData, TransmittedData transmittedData)
@@ -163,7 +161,7 @@ public class GameMenuService
             return new BotMessage(DialogsStringsStorage.GamesInList, ReplyKeyboardMarkupStorage.CreateKeyboardGames(games));
         }
 
-        throw new NotImplementedException();
+        throw new Exception("Неизвестная ошибка в ProcessClickInlineButtonInActionWithGameMenu");
     }
 
     public BotMessage ProcessInputDeletingConfirmation(string textData, TransmittedData transmittedData)
@@ -193,9 +191,7 @@ public class GameMenuService
             return new BotMessage(DialogsStringsStorage.ChoosedGameParameters(game), InlineKeyboardMarkupStorage.GameMenuChoose, true);
         }
 
-        return new BotMessage(DialogsStringsStorage.GameDeletingConfirmation, InlineKeyboardMarkupStorage.GameConfirmation);
-
-        throw new NotImplementedException();
+        throw new Exception("Неизвестная ошибка в ProcessInputDeletingConfirmation");
     }
 
     public BotMessage ProcessChooseEditParameter(string textData, TransmittedData transmittedData)
@@ -232,9 +228,7 @@ public class GameMenuService
             return new BotMessage(DialogsStringsStorage.ChoosedGameParameters(game), InlineKeyboardMarkupStorage.GameMenuChoose);
         }
 
-        return new BotMessage(DialogsStringsStorage.ChooseGameEditParameter, InlineKeyboardMarkupStorage.GameEditing);
-
-        throw new NotImplementedException();
+        throw new Exception("Неизвестная ошибка в ProcessChooseEditParameter");
     }
 
     public BotMessage ProcessEditingInputTitle(string textData, TransmittedData transmittedData)

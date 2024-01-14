@@ -11,17 +11,13 @@ public class StartMenuService
 {
     public BotMessage ProcessCommandStart(string textData, TransmittedData transmittedData)
     {
-        if (textData == SystemStringsStorage.CommandStart)
-        {
-            transmittedData.State = States.MainMenu.ClickOnInlineButton;
-            
-            return new BotMessage(DialogsStringsStorage.MainMenu, InlineKeyboardMarkupStorage.MainMenuChoose);
-        }
-        else
+        if (textData != SystemStringsStorage.CommandStart)
         {
             return new BotMessage(DialogsStringsStorage.CommandStartInputErrorInput);
         }
 
-        throw new Exception("Неизвестная ошибка в ProcessCommandStart");
+        transmittedData.State = States.MainMenu.ClickOnInlineButton;
+
+        return new BotMessage(DialogsStringsStorage.MainMenu, InlineKeyboardMarkupStorage.MainMenuChoose);
     }
 }
