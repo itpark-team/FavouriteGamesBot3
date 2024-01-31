@@ -190,7 +190,7 @@ public class GameMenuService
             Db.Models.Game game = _gamesRepository.GetGameById((int)transmittedData.DataStorage.Get("gameId"));
             return new BotMessage(DialogsStringsStorage.ChoosedGameParameters(game), InlineKeyboardMarkupStorage.GameMenuChoose, true);
         }
-
+        
         throw new Exception("Неизвестная ошибка в ProcessInputDeletingConfirmation");
     }
 
